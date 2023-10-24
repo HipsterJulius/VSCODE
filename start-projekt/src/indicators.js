@@ -7,7 +7,7 @@ export async function getIndicators(query) {
   let indicators = await localforage.getItem("indicators");
   if (!indicators) indicators = [];
   if (query) {
-    indicators = matchSorter(indicators, query, { keys: ["title", "description"] });
+    indicators = matchSorter(indicators, query, { keys: ["title", "description", "test", "data"] });
   }
   return indicators.sort(sortBy("last", "createdAt"));
 }
@@ -29,12 +29,13 @@ export async function getIndicator(id) {
   return indicator ?? null;
 }
 
-export async function updateIndicator(id, updates) {
+
+export async function updateIndicator(id, updates, parsedData) {
   await fakeNetwork();
   let indicators = await localforage.getItem("indicators");
   let indicator = indicators.find(indicator => indicator.id === id);
   if (!indicator) throw new Error("No indicator found for", id);
-  Object.assign(indicator, updates);
+  Object.assign(indicator, updates, { data: parsedData });
   await set(indicators);
   return indicator;
 }

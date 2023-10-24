@@ -11,20 +11,19 @@ import {
 import { getIndicators, createIndicator } from "../indicators";
 import { useEffect } from "react";
 
-
-export async function loader({ request }: {request : any}) {
+ export async function loader({ request }: {request : any}) {
     const url = new URL(request.url);
-    const q = url.searchParams.get("q");
+    const q = url.searchParams.get("q.");
     const indicators = await getIndicators(q);
     return { indicators, q };
   }
 
-export async function action() {
+ export async function action() {
     const indicator = await createIndicator();
     return redirect(`/indicators/${indicator.id}/edit`);
   }
 
-export default function Root() {
+ export default function Root() {
     const { indicators , q}:any = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
@@ -38,11 +37,10 @@ export default function Root() {
     useEffect(() => {
         const qElement = document.getElementById("q");
         if (qElement) {
-  qElement?.setAttribute("value", q);
+          qElement?.setAttribute("value", q);
         }
       }, [q]);
       
-
     return (
       <>
         <div id="sidebar">
@@ -53,10 +51,10 @@ export default function Root() {
                 id="q"
                 className={searching ? "loading" : ""}
                 aria-label="Search indicators"
-                placeholder="Search"
+                placeholder="Search..."
                 type="search"
                 name="q"
-                defaultValue={q}
+                defaultValue= {""}
                 onChange={(event) => {
                     const isFirstSearch = q == null;
                     submit(event.currentTarget.form, {
@@ -124,3 +122,4 @@ export default function Root() {
       </>
     );
   }
+

@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-/*import { 
-  ChakraProvider, 
-  defineStyleConfig, 
-  extendTheme 
-} from '@chakra-ui/react'*/
+import { 
+  //ChakraProvider, 
+  //defineStyleConfig, 
+  //extendTheme 
+} from '@chakra-ui/react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -118,6 +118,6 @@ const theme = extendTheme({
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-        <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

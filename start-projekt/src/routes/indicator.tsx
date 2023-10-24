@@ -4,16 +4,20 @@ import {
     useFetcher, 
   } from "react-router-dom";
   import { getIndicator,  updateIndicator } from '../indicators.js';
+import { useEffect } from "react";
   
+
   export async function action({ request, params }: {request : any, params : any}) {
     let formData = await request.formData();
     return updateIndicator(params.indicatorId, {
       favorite: formData.get("favorite") === "true",
     });
+    
   }
   
   export async function loader({ params }: {params : any}){
     const indicator = await getIndicator(params.indicatorId);
+    
     if (!indicator) {
       throw new Response("", {
         status: 404,
@@ -22,10 +26,36 @@ import {
     }
     return { indicator };
   }
+
+ 
+  function createTable(data : any) {
+    const tableBody = document.getElementById("table-body") as HTMLTableSectionElement;
+    const jsonArray = JSON.parse(data);
+   
+
+    if (Array.isArray(jsonArray)) {
+        (jsonArray as any[]).forEach(function (innerArray: any) {
+          console.log("test")
+            var row = tableBody.insertRow();
+            if (Array.isArray(innerArray)) {
+                innerArray.forEach(function (item: any) {
+                    var cell = row.insertCell();
+                    cell.textContent = item;
+                });
+            }
+        });
+    }
+  }
   
   export function Indicator() {
-    const { indicator}:any = useLoaderData();
-  
+    const { indicator }:any = useLoaderData();
+    useEffect(() => {
+      const tableBody = document.getElementById("table-body") as HTMLTableSectionElement;
+      if (indicator.data && !tableBody.hasChildNodes()) {
+        createTable(indicator.data);
+      }
+    }, [indicator.data]);
+
     return (
       <div id="indicator">
         
@@ -43,17 +73,29 @@ import {
   
           {indicator.description && (
             <p>
-              
-                {indicator.description}
-              
+              {indicator.description}
             </p>
           )}
   
           {indicator.file && (
             <p>
-              
-                {indicator.file}
-              
+              {indicator.file}
+            </p>
+          )}
+         
+          <div id="table-container">
+            <table className="table">
+              <thead>
+              </thead>
+              <tbody id="table-body">
+
+              </tbody>
+            </table>
+          </div>
+
+          {indicator.test && (
+            <p>
+              {indicator.test}
             </p>
           )}
   
