@@ -3,7 +3,7 @@ import {
     useLoaderData,
     useFetcher, 
   } from "react-router-dom";
-  import { getIndicator,  updateIndicator } from '../indicators.js';
+import { getIndicator,  updateIndicator } from '../indicators.js';
 import { useEffect } from "react";
   
 
@@ -35,7 +35,6 @@ import { useEffect } from "react";
 
     if (Array.isArray(jsonArray)) {
         (jsonArray as any[]).forEach(function (innerArray: any) {
-          console.log("test")
             var row = tableBody.insertRow();
             if (Array.isArray(innerArray)) {
                 innerArray.forEach(function (item: any) {

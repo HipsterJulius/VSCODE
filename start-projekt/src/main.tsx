@@ -41,15 +41,6 @@ const router = createBrowserRouter([
             action: indicatorAction,
           },
           {
-            index: true, element: <Index />
-          },
-          {
-            path: "indicators/:indicatorId",
-            element: <Indicator />,
-            loader: indicatorLoader,
-            action: indicatorAction,
-          },
-          {
             path: "indicators/:indicatorId/edit",
             element: <EditIndicator />,
             loader: indicatorLoader,
