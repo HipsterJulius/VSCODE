@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { 
     Outlet,
     NavLink,
@@ -8,23 +10,25 @@ import {
     useNavigation,
     useSubmit,
 } from "react-router-dom";
-import { getIndicators, createIndicator } from "../indicators";
+import { getTables, createTable } from "../tables";
 import { useEffect } from "react";
 
  export async function loader({ request }: {request : any}) {
     const url = new URL(request.url);
     const q = url.searchParams.get("q.");
-    const indicators = await getIndicators(q);
-    return { indicators, q };
+    const tables = await getTables(q);
+    return { tables, q };
   }
 
  export async function action() {
-    const indicator = await createIndicator();
-    return redirect(`/indicators/${indicator.id}/edit`);
+    const table = await createTable();
+    return redirect(`/tables/${table.id}/edit`);
   }
 
  export default function Root() {
-    const { indicators , q}:any = useLoaderData();
+    const { tables , q}:any = useLoaderData();
+    
+    
     const navigation = useNavigation();
     const submit = useSubmit();
 
@@ -44,13 +48,13 @@ import { useEffect } from "react";
     return (
       <>
         <div id="sidebar">
-          <h1>React Router Indicators</h1>
+          <h1>React Router Tables</h1>
           <div>
             <Form id="search-form" role="search">
               <input
                 id="q"
                 className={searching ? "loading" : ""}
-                aria-label="Search indicators"
+                aria-label="Search tables"
                 placeholder="Search..."
                 type="search"
                 name="q"
@@ -77,12 +81,12 @@ import { useEffect } from "react";
             </Form>
           </div>
           <nav>
-            {indicators.length ? (
+            {tables.length ? (
                 <ul>
-                {indicators.map((indicator : any) => (
-                    <li key={indicator.id}>
+                {tables.map((table : any) => (
+                    <li key={table.id}>
                         <NavLink
-                            to={`indicators/${indicator.id}`}
+                            to={`tables/${table.id}`}
                             className={({ isActive, isPending }: {isActive:any, isPending:any}) =>
                          isActive
                             ? "active"
@@ -91,15 +95,14 @@ import { useEffect } from "react";
                             : ""
                             }
                         >
-                            <Link to={`indicators/${indicator.id}`}>
-                            {indicator.title ? (
+                            <Link to={`tables/${table.id}`}>
+                            {table.title ? (
                             <>
-                                {indicator.title}
+                                {table.title}
                             </>
                             ) : (
                             <i>No Name</i>
                             )}{" "}
-                            {indicator.favorite && <span>★</span>}
                             </Link>
                         </NavLink>
                     </li>
@@ -107,7 +110,7 @@ import { useEffect } from "react";
                 </ul>
             ) : (
                 <p>
-                <i>No indicators</i>
+                <i>No tables</i>
                 </p>
             )}
           </nav>

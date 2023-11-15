@@ -1,8 +1,8 @@
 import { redirect } from "react-router-dom";
-import { destroyIndicator } from "../indicators";
+import { destroyTable} from "../tables";
 
 
 export async function action({ params }: {params : any}) {
-  await destroyIndicator(params.indicatorId);
+  await destroyTable(params.tableId);
   return redirect("/");
 }

@@ -1,37 +1,27 @@
 import { 
     Form, 
     useLoaderData,
-    useFetcher, 
   } from "react-router-dom";
-import { getIndicator,  updateIndicator } from '../indicators.js';
+import { getTable } from '../tables.js';
 import { useEffect } from "react";
   
-
-  export async function action({ request, params }: {request : any, params : any}) {
-    let formData = await request.formData();
-    return updateIndicator(params.indicatorId, {
-      favorite: formData.get("favorite") === "true",
-    });
-    
-  }
   
   export async function loader({ params }: {params : any}){
-    const indicator = await getIndicator(params.indicatorId);
+    const table = await getTable(params.tableId);
     
-    if (!indicator) {
+    if (!table) {
       throw new Response("", {
         status: 404,
         statusText: "Not Found",
       });
     }
-    return { indicator };
+    return { table };
   }
 
  
   function createTable(data : any) {
     const tableBody = document.getElementById("table-body") as HTMLTableSectionElement;
     const jsonArray = JSON.parse(data);
-   
 
     if (Array.isArray(jsonArray)) {
         (jsonArray as any[]).forEach(function (innerArray: any) {
@@ -46,41 +36,28 @@ import { useEffect } from "react";
     }
   }
   
-  export function Indicator() {
-    const { indicator }:any = useLoaderData();
+  export function Table() {
+    const { table }:any = useLoaderData();
     useEffect(() => {
       const tableBody = document.getElementById("table-body") as HTMLTableSectionElement;
-      if (indicator.data && !tableBody.hasChildNodes()) {
-        createTable(indicator.data);
+      if (table.data && !tableBody.hasChildNodes()) {
+        createTable(table.data);
       }
-    }, [indicator.data]);
+    }, [table.data]);
 
     return (
-      <div id="indicator">
+      <div id="table">
         
         <div>
           <h1>
-            {indicator.title ? (
+            {table.title ? (
               <>
-                {indicator.title}
+                {table.title}
               </>
             ) : (
               <i>No Name</i>
             )}{" "}
-            <Favorite indicator={indicator} />
           </h1>
-  
-          {indicator.description && (
-            <p>
-              {indicator.description}
-            </p>
-          )}
-  
-          {indicator.file && (
-            <p>
-              {indicator.file}
-            </p>
-          )}
          
           <div id="table-container">
             <table className="table">
@@ -91,13 +68,6 @@ import { useEffect } from "react";
               </tbody>
             </table>
           </div>
-
-          {indicator.test && (
-            <p>
-              {indicator.test}
-            </p>
-          )}
-  
           <div>
             <Form action="edit">
               <button type="submit">Edit</button>
@@ -120,31 +90,6 @@ import { useEffect } from "react";
           </div>
         </div>
       </div>
-    );
-  }
-  
-  function Favorite({ indicator }: any ) {
-    const fetcher = useFetcher();
-    // yes, this is a `let` for later
-    let favorite = indicator.favorite;
-    if (fetcher.formData) {
-      favorite = fetcher.formData.get("favorite") === "true";
-    }
-  
-    return (
-      <fetcher.Form method="post">
-        <button
-          name="favorite"
-          value={favorite ? "false" : "true"}
-          aria-label={
-            favorite
-              ? "Remove from favorites"
-              : "Add to favorites"
-          }
-        >
-          {favorite ? "★" : "☆"}
-        </button>
-      </fetcher.Form>
     );
   }
   

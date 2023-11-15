@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { 
@@ -15,10 +16,11 @@ import Root, {
   action as rootAction 
 } from "./routes/root";
 import ErrorPage from "./error-page";
-import {loader as indicatorLoader, action as indicatorAction, Indicator} from "./routes/indicator";
-import EditIndicator, {action as editAction} from "./routes/edit";
+import {loader as tableLoader,  Table} from "./routes/table";
+import EditTable, {action as editAction} from "./routes/edit";
 import {action as destroyAction} from "./routes/destroy";
 import Index from "./routes/index";
+import { Filter } from "./routes/headerfilter";
 
 const rootElement : any = document.getElementById("root");
 
@@ -35,19 +37,23 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Index /> },
           {
-            path: "indicators/:indicatorId",
-            element: <Indicator />,
-            loader: indicatorLoader,
-            action: indicatorAction,
+            path: "tables/:headerfilter",
+            element: <Filter />,
+            //loader: filterLoader,
           },
           {
-            path: "indicators/:indicatorId/edit",
-            element: <EditIndicator />,
-            loader: indicatorLoader,
+            path: "tables/:tableId",
+            element: <Table />,
+            loader: tableLoader,
+          },
+          {
+            path: "tables/:tableId/edit",
+            element: <EditTable />,
+            loader: tableLoader,
             action: editAction,
           },
           {
-            path: "indicators/:indicatorId/destroy",
+            path: "tables/:tableId/destroy",
             action: destroyAction,
             errorElement: <div>Oops! There was an error!</div>
           }
