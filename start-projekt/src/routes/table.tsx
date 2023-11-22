@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { 
     Form, 
     useLoaderData,
@@ -25,10 +27,10 @@ import { useEffect } from "react";
 
     if (Array.isArray(jsonArray)) {
         (jsonArray as any[]).forEach(function (innerArray: any) {
-            var row = tableBody.insertRow();
+            const row = tableBody.insertRow();
             if (Array.isArray(innerArray)) {
                 innerArray.forEach(function (item: any) {
-                    var cell = row.insertCell();
+                    const cell = row.insertCell();
                     cell.textContent = item;
                 });
             }

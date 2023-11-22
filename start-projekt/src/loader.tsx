@@ -14,12 +14,12 @@ export function parse(){
         reject(error);
       },
     };
-    const url = "https://github.com/HipsterJulius/VSCODE/blob/table/start-projekt/public/Data_inventory_of_organisations.csv"
+    const url = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/Data_inventory_of_organisations.csv";
     Papa.parse(url, config);
   });
 }
 
-export async function csvToJson2(): Promise<any> {
+export async function csvToJson(): Promise<any> {
       try {
         const parsedData = await parse();
         return parsedData;
@@ -29,7 +29,7 @@ export async function csvToJson2(): Promise<any> {
       }
 }
 
-
+/*
 export function parseCsv(file: File): Promise<any> {
     return new Promise((resolve, reject) => {
       const config = {
@@ -64,4 +64,4 @@ export async function csvToJson(): Promise<any> {
     } else {
       throw new Error('Input element not found');
     }
-  }
+  }*/

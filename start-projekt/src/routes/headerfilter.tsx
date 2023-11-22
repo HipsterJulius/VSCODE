@@ -1,8 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
-import { csvToJson2 } from '../loader';
+import { csvToJson } from '../loader';
 import DataGrid from 'react-data-grid';
+import { redirect, useLoaderData } from 'react-router-dom';
 
+// eslint-disable-next-line react-refresh/only-export-components
+export async function loader(){
+  console.log("hi")
+  try {
+    const data = await csvToJson();
+    console.log(data)
+    const jsonArray = JSON.parse(data);
+    console.log(jsonArray)
+    return jsonArray;
+  } catch (error) {
+    console.error(error);
+    // Handle errors appropriately
+    return redirect("/error"); // Zum Beispiel auf eine Fehlerseite umleiten
+  }
+}
 
 const columns = [
   { key: 'id', name: 'ID' },
@@ -26,16 +42,33 @@ const columns = [
 ];
 
 const rows = [
-  {id : 1, name : "Academic General Practitioner Development Network (AHON)"}
+  {id: "0", name:"first" }
 ]
-
-async function createTable() {
-  const csvdata = await csvToJson2();
-  console.log(csvdata);
-}
+/*
+async function createTable(): Promise<Row[]> {
+  const data = await csvToJson();
+  const jsonArray = JSON.parse(data) as Row[];
+  return jsonArray;
+}*/
 
 export function Filter() {
-  createTable();
-  
-  return <DataGrid columns={columns} rows={rows} />;
+  const [jsonArray, setJsonArray] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await loader();
+        setJsonArray(data);
+      } catch (error) {
+        // Handle errors appropriately
+        console.error(error);
+        // Zum Beispiel auf eine Fehlerseite umleiten
+        redirect("/error");
+      }
+    };
+
+    fetchData();
+  }, []); // Leeres Abhängigkeitsarray, um sicherzustellen, dass es nur einmal geladen wird
+
+  return <>{(jsonArray.length > 0) && <DataGrid columns={columns} rows={jsonArray} />}</>;
 }

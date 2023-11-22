@@ -11,7 +11,7 @@ import {
     useSubmit,
 } from "react-router-dom";
 import { getTables, createTable } from "../tables";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
  export async function loader({ request }: {request : any}) {
     const url = new URL(request.url);
@@ -120,7 +120,9 @@ import { useEffect } from "react";
             navigation.state === "loading" ? "loading" : ""
         }
         >
+          <Suspense >
             <Outlet />
+          </Suspense>
         </div>
       </>
     );
