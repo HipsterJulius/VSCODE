@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import { csvToJson } from '../loader';
-import DataGrid from 'react-data-grid';
-import { redirect, useLoaderData } from 'react-router-dom';
+//import DataGrid from 'react-data-grid';
+import { redirect } from 'react-router-dom';
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 
-// eslint-disable-next-line react-refresh/only-export-components
+const customGridStyles = {
+  backgroundColor: '#f2f2f2',
+  border: '1px solid #ddd',
+  
+};
+
 export async function loader(){
-  console.log("hi")
   try {
     const data = await csvToJson();
-    console.log(data)
     const jsonArray = JSON.parse(data);
-    console.log(jsonArray)
     return jsonArray;
   } catch (error) {
     console.error(error);
@@ -20,55 +23,73 @@ export async function loader(){
   }
 }
 
-const columns = [
-  { key: 'id', name: 'ID' },
-  { key: 'name', name: 'Name' },
-  { key: 'source', name: 'Source' },
-  { key: 'study_location', name: 'Study Location' },
-  { key: 'title', name: 'Geographical' },
-  { key: 'geographical', name: 'Study Period' },
-  { key: 'time_unit', name: 'Time Unit' },
-  { key: 'number_of_cases', name: 'Number of cases' },
-  { key: 'qualitative_quantitative', name: 'Qualitative/Quantitative' },
-  { key: 'secondary_primary_data', name: 'Secondary or primary data' },
-  { key: 'aggregated_individual_data', name: 'Aggregated/Individual Data' },
-  { key: 'cost', name: 'Cost' },
-  { key: 'url', name: 'URL' },
-  { key: 'contact_detail', name: 'Contact detail' },
-  { key: 'data_quality_limitations', name: 'Data Quality/ Limitations' },
-  { key: 'comments', name: 'Comments' },
-  { key: 'contributor', name: 'Contributor' },
-  { key: 'topic', name: 'Topic' }
+const columns : GridColDef[] = [
+  { field: 'id', headerName: 'ID', sortable: false },
+  { field: 'name', headerName: 'Name', sortable: false },
+  { field: 'source', headerName: 'Source', sortable: false },
+  { field: 'study_location', headerName: 'Study Location', sortable: false },
+  { field: 'title', headerName: 'Geographical', sortable: false },
+  { field: 'geographical', headerName: 'Study Period', sortable: false },
+  { field: 'time_unit', headerName: 'Time Unit', sortable: false },
+  { field: 'number_of_cases', headerName: 'Number of cases', sortable: false },
+  { field: 'qualitative_quantitative', headerName: 'Qualitative/Quantitative', sortable: false },
+  { field: 'secondary_primary_data', headerName: 'Secondary or primary data', sortable: false },
+  { field: 'aggregated_individual_data', headerName: 'Aggregated/Individual Data', sortable: false },
+  { field: 'cost', headerName: 'Cost', sortable: false },
+  { field: 'url', headerName: 'URL', sortable: false },
+  { field: 'contact_detail', headerName: 'Contact detail', sortable: false },
+  { field: 'data_quality_limitations', headerName: 'Data Quality/ Limitations', sortable: false },
+  { field: 'comments', headerName: 'Comments', sortable: false },
+  { field: 'contributor', headerName: 'Contributor', sortable: false },
+  { field: 'topic', headerName: 'Topic', sortable: false }
 ];
 
-const rows = [
-  {id: "0", name:"first" }
-]
-/*
-async function createTable(): Promise<Row[]> {
-  const data = await csvToJson();
-  const jsonArray = JSON.parse(data) as Row[];
-  return jsonArray;
-}*/
 
 export function Filter() {
-  const [jsonArray, setJsonArray] = useState<any>([]);
-
+  const [rows, setRows] = useState<any>([]);
   useEffect(() => {
+
+    const transformData = (data: any[]) => {
+      const rows = data.map((innerArray) => {
+      const [id, name, source, study_location, title, geographical, time_unit, number_of_cases, qualitative_quantitative, secondary_primary_data, aggregated_individual_data, cost, url, contact_detail, data_quality_limitations, comments, contributor,topic] = innerArray.slice(0, 18);
+      return { id, name, source, study_location, title, geographical, time_unit, number_of_cases, qualitative_quantitative, secondary_primary_data, aggregated_individual_data, cost, url, contact_detail, data_quality_limitations, comments, contributor,topic };
+      });
+      return rows;
+    };
+
     const fetchData = async () => {
       try {
         const data = await loader();
-        setJsonArray(data);
+        const transformedRows = transformData(data);
+        setRows(transformedRows);
       } catch (error) {
-        // Handle errors appropriately
         console.error(error);
-        // Zum Beispiel auf eine Fehlerseite umleiten
         redirect("/error");
       }
     };
 
     fetchData();
-  }, []); // Leeres Abhängigkeitsarray, um sicherzustellen, dass es nur einmal geladen wird
+  }, []); 
 
-  return <>{(jsonArray.length > 0) && <DataGrid columns={columns} rows={jsonArray} />}</>;
+
+return (
+  <>
+    {(rows.length > 0) && (
+      <div>
+        <DataGrid
+          rows={rows.slice(1, 42)}
+          columns={columns}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 15 } },
+          }}
+          pageSizeOptions={[15,20,25]}
+
+          disableColumnFilter
+          disableColumnMenu
+          disableRowSelectionOnClick
+        />
+      </div>
+    )}
+  </>
+);
 }
