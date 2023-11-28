@@ -3,13 +3,8 @@ import 'react-data-grid/lib/styles.css';
 import { csvToJson } from '../loader';
 //import DataGrid from 'react-data-grid';
 import { redirect } from 'react-router-dom';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-const customGridStyles = {
-  backgroundColor: '#f2f2f2',
-  border: '1px solid #ddd',
-  
-};
 
 export async function loader(){
   try {
