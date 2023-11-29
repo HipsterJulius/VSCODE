@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Papa from 'papaparse';
 
-
-export function parse(){
+// Hilfsfunktion, um die Daten zu parsen
+function parse(){
   return new Promise((resolve, reject) => {
     const config = {
       download : true,
@@ -19,6 +18,7 @@ export function parse(){
   });
 }
 
+// Funktion, die aufgerufen werden kann, um die Daten zu parsen
 export async function csvToJson(): Promise<any> {
       try {
         const parsedData = await parse();
@@ -28,40 +28,3 @@ export async function csvToJson(): Promise<any> {
         throw new Error('Error parsing CSV');
       }
 }
-
-/*
-export function parseCsv(file: File): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const config = {
-        complete: function (results: any) {
-          const data = JSON.stringify(results.data, null, 2);
-          resolve(data);
-        },
-        error: function (error: any) {
-          reject(error);
-        },
-      };
-  
-      Papa.parse(file, config);
-    });
-  }
-  
-export async function csvToJson(): Promise<any> {
-    const input: any = document.getElementById('input');
-    if (input) {
-      const file = input.files[0];
-      if (file) {
-        try {
-          const parsedData = await parseCsv(file);
-          return parsedData;
-        } catch (error) {
-          console.error(error);
-          throw new Error('Error parsing CSV');
-        }
-      } else {
-        throw new Error('No file selected');
-      }
-    } else {
-      throw new Error('Input element not found');
-    }
-  }*/
