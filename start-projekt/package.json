@@ -9,25 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.8.1",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.6",
     "@mui/x-data-grid": "^6.18.2",
     "@types/papaparse": "^5.3.9",
-    "faker": "^5.5.3",
-    "faker-js": "^1.0.0",
-    "framer-motion": "^10.16.4",
     "linaria": "^5.0.5",
-    "papa": "^0.0.0",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.2.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -38,14 +30,5 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@linaria"
-    ]
   }
 }
