@@ -13,7 +13,7 @@ function parse(){
         reject(error);
       },
     };
-    const url = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/Data_inventory_of_organisations.csv";
+    const url = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/health_and_institutional_data.csv";
     Papa.parse(url, config);
   });
 }

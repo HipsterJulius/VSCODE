@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import { csvToJson } from '../loader';
-import { Form, Link, redirect } from 'react-router-dom';
+import { Form, redirect } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 
@@ -18,7 +18,7 @@ export async function loader(){
 }
 
 export async function action() {
-  return redirect(`/anotherTable`);
+  return redirect(`/headerfilters/anotherTable`);
 }
 
 /*
@@ -87,9 +87,8 @@ export function Filter() {
 return (
   <>
     <Form method="post">
-      <button type="submit">New</button>
+      <button type="submit">Gehe zur zweiten Tabelle</button>
     </Form> 
-    <Link to="/anotherTable">Link to AnotherTable</Link>
     {(rows.length > 0) && (
       <div>
         <DataGrid          
