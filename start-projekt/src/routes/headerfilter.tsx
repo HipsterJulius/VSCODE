@@ -6,7 +6,7 @@ import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 
 export async function loader(){
   try {
-    const url : string = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/7942fee61c759865423963cfb5288fec912a4f6c/start-projekt/public/Data_inventory_of_organisations.csv"
+    const url : string = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/health_and_institutional_data.csv"
     const data = await csvToJson(url);
     const jsonArray = JSON.parse(data);
     return jsonArray;
