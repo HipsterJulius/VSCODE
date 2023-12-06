@@ -5,7 +5,7 @@ function parse(url: string){
   return new Promise((resolve, reject) => {
     const config = {
       download : true,
-      encoding : "UTF-8",
+      encoding : "ISO-8859-1",
       complete: function (results: any) {
         const data = JSON.stringify(results.data, null, 2);
         resolve(data);

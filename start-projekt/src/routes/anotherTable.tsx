@@ -110,11 +110,7 @@ export function AnotherTable() {
 
 return (
   <>
-    <html>
-      <head>
-        <meta charSet="UTF-8" />
-      </head>
-      <body>
+    
       <div className="header">
         <h1>Data inventory of organisations</h1>
       </div>
@@ -141,7 +137,7 @@ return (
         <DataGrid          
 
           // Rows and colums for the Data-Grid
-          rows={filteredRows.slice(1, 42)}
+          rows={filteredRows.slice(1, 72)}
           columns={columns}
 
           slots={{
@@ -181,8 +177,6 @@ return (
         />
       </div>
       )}
-      </body>
-    </html>
   </>
 );
 }
