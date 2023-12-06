@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import { csvToJson } from '../loader';
 import { Form, redirect } from 'react-router-dom';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-
+import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 
 export async function loader(){
   try {
-    const data = await csvToJson();
+    const url : string = "https://raw.githubusercontent.com/HipsterJulius/VSCODE/7942fee61c759865423963cfb5288fec912a4f6c/start-projekt/public/Data_inventory_of_organisations.csv"
+    const data = await csvToJson(url);
     const jsonArray = JSON.parse(data);
     return jsonArray;
   } catch (error) {
@@ -20,6 +20,19 @@ export async function loader(){
 export async function action() {
   return redirect(`/headerfilters/anotherTable`);
 }
+
+// Die Reihen nach dem Filter filtern
+function filterRows(rows: any[][], number : number): any[][] {
+  if(number == 1){
+    return rows.filter((item: any) => item.study_location === "The Netherlands" && item.source === "RIVM");
+  } else return rows.filter((item : any) => {
+    // Überprüfen, ob der String in einer der Zellen enthalten ist
+    const stringIsIncluded = Object.values(item).some(value => typeof value === 'string' && value.toLowerCase().includes("health".toLowerCase()));
+    const locationIsNetherlands = item.study_location === 'The Netherlands';
+    
+    return stringIsIncluded && locationIsNetherlands });
+}
+    
 
 /*
  * Liste aller columns
@@ -57,6 +70,8 @@ const columns : GridColDef[] = [
 
 export function Filter() {
   const [rows, setRows] = useState<any>([]);
+  const [filteredRows, setFilteredRows] = useState<any[]>([]); // Gefilterte Daten
+
   useEffect(() => {
 
     // Helpermethod to transform the data into rows
@@ -74,6 +89,7 @@ export function Filter() {
         const data = await loader();
         const transformedRows = transformData(data);
         setRows(transformedRows);
+        setFilteredRows(transformedRows);
       } catch (error) {
         console.error(error);
         redirect("/error");
@@ -84,19 +100,54 @@ export function Filter() {
 
   }, []); 
 
+  const handleFilter1ButtonClick = () => {
+    const newFilteredRows = filterRows(rows, 1);
+    setFilteredRows(newFilteredRows);
+  };
+
+  const handleFilter2ButtonClick = () => {
+    const newFilteredRows = filterRows(rows, 2);
+    setFilteredRows(newFilteredRows);
+  };
+
+  const handleClearFilterButtonClick = () => {
+    setFilteredRows(rows)
+  }
+
 return (
   <>
+    <div className="header">
+        <h1>Data inventory of organisations</h1>
+      </div>
+    <div className='label-container'>
+      <label htmlFor="">table:</label>
+      <label htmlFor="" className='label-item'>filteroptions:</label>
+    </div>
+    <div className='flex-container'><Form method="post">
+      <button type="submit" id='navButton' className='flex-item' onClick={handleClearFilterButtonClick}>contextual data</button>
+    </Form>
     <Form method="post">
-      <button type="submit">Gehe zur zweiten Tabelle</button>
+      <button type="button" className='flex-item' onClick={handleFilter1ButtonClick}>study location und source</button>
+    </Form>
+    <Form method="post">
+      <button type="button" className='flex-item' onClick={handleFilter2ButtonClick}>health and studylocation</button>
     </Form> 
+    <Form method="post">
+      <button type="button" className='flex-item' onClick={handleClearFilterButtonClick}>Delete filter</button>
+    </Form> 
+    </div>
     {(rows.length > 0) && (
       <div>
         <DataGrid          
 
           // Rows and colums for the Data-Grid
-          rows={rows.slice(1, 42)}
+          rows={filteredRows.slice(1, 42)}
           columns={columns}
 
+          slots={{
+            toolbar: GridToolbar,
+          }}
+          
           // Initial state of the data-grid
           // Pagination and column visibility
           initialState={{

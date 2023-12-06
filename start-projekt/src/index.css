@@ -2,6 +2,35 @@
  * Style der Tabelle
 */
 .MuiDataGrid-root{
-  margin-top: auto;
   margin-left: auto;
+  margin-top: 20px;
 }
+
+.flex-container {
+  display: flex;
+  flex-flow: wrap;
+  max-width: 50em;
+  border: 2px solid;
+  border-top: white;
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.flex-item {
+  width: 190px;
+}
+
+.label-container{
+  display: flex;
+  justify-content: left;
+  max-width: 50em;
+  border: 2px solid;
+  border-bottom: white;
+  padding : 10px;
+  padding-bottom: 0px;
+}
+
+.label-item{
+  padding-left: 170px;
+}
+
