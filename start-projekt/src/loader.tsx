@@ -1,7 +1,7 @@
 import Papa from "papaparse";
 
 // Hilfsfunktion, um die Daten zu parsen
-function parse(url: string) {
+function parse(url: any) {
   return new Promise((resolve, reject) => {
     const config = {
       download: true,
