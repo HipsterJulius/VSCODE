@@ -1,11 +1,11 @@
-import Papa from 'papaparse';
+import Papa from "papaparse";
 
 // Hilfsfunktion, um die Daten zu parsen
-function parse(url: string){
+function parse(url: string) {
   return new Promise((resolve, reject) => {
     const config = {
-      download : true,
-      encoding : "ISO-8859-1",
+      download: true,
+      encoding: "ISO-8859-1",
       complete: function (results: any) {
         const data = JSON.stringify(results.data, null, 2);
         resolve(data);
@@ -20,11 +20,11 @@ function parse(url: string){
 
 // Funktion, die aufgerufen werden kann, um die Daten zu parsen
 export async function csvToJson(url: string): Promise<any> {
-      try {
-        const parsedData = await parse(url);
-        return parsedData;
-      } catch (error) {
-        console.error(error);
-        throw new Error('Error parsing CSV');
-      }
+  try {
+    const parsedData = await parse(url);
+    return parsedData;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error parsing CSV");
+  }
 }

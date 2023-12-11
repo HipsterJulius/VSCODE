@@ -3,8 +3,12 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./error-page";
-import { Filter, loader as filterLoader, action as filterAction } from "./routes/headerfilter";
-import {AnotherTable, action as tableAction} from "./routes/anotherTable";
+import {
+  Filter,
+  loader as filterLoader,
+  action as filterAction,
+} from "./routes/headerfilter";
+import { AnotherTable, action as tableAction } from "./routes/anotherTable";
 
 const rootElement: any = document.getElementById("root");
 
@@ -17,15 +21,13 @@ const router = createBrowserRouter([
     loader: filterLoader,
     action: filterAction,
   },
-      {
-        path: "headerfilters/anotherTable",
-        element: <AnotherTable />,
-        loader: filterLoader,
-        action: tableAction,
-        errorElement: <ErrorPage />,
-      },
-    
-  
+  {
+    path: "anotherTable",
+    element: <AnotherTable />,
+    loader: filterLoader,
+    action: tableAction,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(rootElement).render(
