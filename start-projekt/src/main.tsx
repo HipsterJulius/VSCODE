@@ -4,11 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./error-page";
 import {
-  Filter,
-  loader as filterLoader,
-  action as filterAction,
-} from "./routes/headerfilter";
-import { AnotherTable, action as tableAction } from "./routes/anotherTable";
+  Health_and_institutional_data_table,
+  loader as DataLoader,
+  action as HaIdAction,
+} from "./routes/health_and_institutional_data";
+import {
+  Contextual_data_table,
+  action as CdAction,
+} from "./routes/contextual_data";
 
 const rootElement: any = document.getElementById("root");
 
@@ -16,16 +19,16 @@ const rootElement: any = document.getElementById("root");
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Filter />,
+    element: <Health_and_institutional_data_table />,
     errorElement: <ErrorPage />,
-    loader: filterLoader,
-    action: filterAction,
+    loader: DataLoader,
+    action: HaIdAction,
   },
   {
-    path: "anotherTable",
-    element: <AnotherTable />,
-    loader: filterLoader,
-    action: tableAction,
+    path: "contextual_data",
+    element: <Contextual_data_table />,
+    loader: DataLoader,
+    action: CdAction,
     errorElement: <ErrorPage />,
   },
 ]);

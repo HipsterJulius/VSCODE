@@ -3,13 +3,18 @@ import "react-data-grid/lib/styles.css";
 import { csvToJson } from "../loader";
 import { Form, redirect } from "react-router-dom";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { columns_config } from "../table-config";
-import { handleFilterButtonClick } from "../filter";
+import { columns_config, getFilteredRows } from "../table-config";
+import { filterDropDown, handleFilterButtonClick } from "../filter";
+import {
+  getDropDownColumns,
+  getDropDownItems,
+  initializeDropDown,
+} from "../drop-down";
 
 export async function loader() {
   try {
     const url: string =
-      "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/health_and_institutional_data.csv";
+      "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/contextual_data.csv";
     const data = await csvToJson(url);
     const jsonArray = JSON.parse(data);
     return jsonArray;
@@ -21,10 +26,10 @@ export async function loader() {
 }
 
 export async function action() {
-  return redirect(`anotherTable`);
+  return redirect(`/`);
 }
 
-export function Filter() {
+export function Contextual_data_table() {
   const [rows, setRows] = useState<any>([]);
   const [filteredRows, setFilteredRows] = useState<any[]>([]); // Gefilterte Daten
 
@@ -80,11 +85,17 @@ export function Filter() {
       return rows;
     };
 
-    // Method to fetch the data and set the rows after transforming
+    // Helpermethod to fetch the data and set the rows after transforming
     const fetchData = async () => {
       try {
         const data = await loader();
         const transformedRows = transformData(data);
+
+        // Codeblock to set the dropdown menu andfilter
+        const columnObject = getDropDownColumns(columns_config);
+        const subCategories = getDropDownItems(columnObject, transformedRows);
+        initializeDropDown(columnObject, subCategories);
+
         setRows(transformedRows);
         setFilteredRows(transformedRows);
       } catch (error) {
@@ -99,7 +110,7 @@ export function Filter() {
   return (
     <>
       <div className="header">
-        <h1>Data inventory of organisations : health and institutional data</h1>
+        <h1>Data inventory of organisations: contextual data</h1>
       </div>
       <div className="label-container">
         <label htmlFor="">table:</label>
@@ -114,14 +125,14 @@ export function Filter() {
             className="flex-item"
             onClick={() => setFilteredRows(handleFilterButtonClick(0, 0, rows))}
           >
-            contextual data
+            health and institutional data
           </button>
         </Form>
         <Form method="post">
           <button
             type="button"
             className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(2, 1, rows))}
+            onClick={() => setFilteredRows(handleFilterButtonClick(1, 1, rows))}
           >
             study location und source
           </button>
@@ -130,10 +141,24 @@ export function Filter() {
           <button
             type="button"
             className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(2, 2, rows))}
+            onClick={() => setFilteredRows(handleFilterButtonClick(1, 2, rows))}
           >
-            health and studylocation
+            social and primary/secondary
           </button>
+        </Form>
+        <Form>
+          <div className="dropdown">
+            <select name="filter" id="column_selection">
+              <option value="">Select column</option>
+            </select>
+            <select
+              name="filter"
+              id="value_selection"
+              onChange={() => setFilteredRows(filterDropDown(rows))}
+            >
+              <option value="">Select value</option>
+            </select>
+          </div>
         </Form>
         <Form method="post">
           <button
@@ -149,7 +174,7 @@ export function Filter() {
         <div>
           <DataGrid
             // Rows and colums for the Data-Grid
-            rows={filteredRows.slice(1, 42)}
+            rows={getFilteredRows(filteredRows, rows)}
             columns={columns_config}
             // toolbar on top of the table
             slots={{

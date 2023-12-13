@@ -60,6 +60,12 @@ export const handleFilterButtonClick = (
   filterMode: number,
   rows: any
 ): any => {
+  const columnSel = document.getElementById(
+    "column_selection"
+  ) as HTMLSelectElement;
+  const valueSel = document.getElementById(
+    "value_selection"
+  ) as HTMLSelectElement;
   if (filterMethod == 1) {
     const newFilteredRows = filterRowsTable1(rows, filterMode);
     return newFilteredRows;
@@ -67,5 +73,21 @@ export const handleFilterButtonClick = (
     const newFilteredRows = filterRowsTable2(rows, filterMode);
     return newFilteredRows;
   }
+  columnSel.value = "";
+  valueSel.value = "";
   return rows;
 };
+
+export function filterDropDown(rows: any) {
+  const columnSel = document.getElementById(
+    "column_selection"
+  ) as HTMLSelectElement;
+  const valueSel = document.getElementById(
+    "value_selection"
+  ) as HTMLSelectElement;
+  if (columnSel.value == "ID") {
+    return rows.filter((item: any) => item.id === valueSel.value);
+  } else if (columnSel.value == "Study Location") {
+    return rows.filter((item: any) => item.study_location === valueSel.value);
+  }
+}

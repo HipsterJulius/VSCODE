@@ -1,4 +1,4 @@
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridRowProps } from "@mui/x-data-grid";
 
 /*
  * Liste aller columns
@@ -105,3 +105,12 @@ export const columns_config: GridColDef[] = [
   },
   { field: "topic", headerName: "Topic", sortable: false, width: 150 },
 ];
+
+export function getFilteredRows(
+  filteredRows: any[],
+  rows: any[]
+): GridRowProps[] {
+  if (filteredRows.length == rows.length) {
+    return filteredRows.slice(1, rows.length - 1);
+  } else return filteredRows;
+}

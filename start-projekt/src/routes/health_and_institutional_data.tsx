@@ -3,13 +3,13 @@ import "react-data-grid/lib/styles.css";
 import { csvToJson } from "../loader";
 import { Form, redirect } from "react-router-dom";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { columns_config } from "../table-config";
+import { columns_config, getFilteredRows } from "../table-config";
 import { handleFilterButtonClick } from "../filter";
 
 export async function loader() {
   try {
     const url: string =
-      "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/contextual_data.csv";
+      "https://raw.githubusercontent.com/HipsterJulius/VSCODE/table/start-projekt/public/health_and_institutional_data.csv";
     const data = await csvToJson(url);
     const jsonArray = JSON.parse(data);
     return jsonArray;
@@ -21,10 +21,10 @@ export async function loader() {
 }
 
 export async function action() {
-  return redirect(`/`);
+  return redirect(`contextual_data`);
 }
 
-export function AnotherTable() {
+export function Health_and_institutional_data_table() {
   const [rows, setRows] = useState<any>([]);
   const [filteredRows, setFilteredRows] = useState<any[]>([]); // Gefilterte Daten
 
@@ -80,7 +80,7 @@ export function AnotherTable() {
       return rows;
     };
 
-    // Helpermethod to fetch the data and set the rows after transforming
+    // Method to fetch the data and set the rows after transforming
     const fetchData = async () => {
       try {
         const data = await loader();
@@ -99,7 +99,7 @@ export function AnotherTable() {
   return (
     <>
       <div className="header">
-        <h1>Data inventory of organisations: contextual data</h1>
+        <h1>Data inventory of organisations : health and institutional data</h1>
       </div>
       <div className="label-container">
         <label htmlFor="">table:</label>
@@ -114,14 +114,14 @@ export function AnotherTable() {
             className="flex-item"
             onClick={() => setFilteredRows(handleFilterButtonClick(0, 0, rows))}
           >
-            health and institutional data
+            contextual data
           </button>
         </Form>
         <Form method="post">
           <button
             type="button"
             className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(1, 1, rows))}
+            onClick={() => setFilteredRows(handleFilterButtonClick(2, 1, rows))}
           >
             study location und source
           </button>
@@ -130,9 +130,9 @@ export function AnotherTable() {
           <button
             type="button"
             className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(1, 2, rows))}
+            onClick={() => setFilteredRows(handleFilterButtonClick(2, 2, rows))}
           >
-            social and primary/secondary
+            health and studylocation
           </button>
         </Form>
         <Form method="post">
@@ -149,7 +149,7 @@ export function AnotherTable() {
         <div>
           <DataGrid
             // Rows and colums for the Data-Grid
-            rows={filteredRows.slice(1, 72)}
+            rows={getFilteredRows(filteredRows, rows)}
             columns={columns_config}
             // toolbar on top of the table
             slots={{

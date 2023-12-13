@@ -13,7 +13,7 @@
 .flex-container {
   display: flex;
   flex-flow: wrap;
-  max-width: 50em;
+  max-width: 100em;
   border: 2px solid;
   border-top: white;
   padding: 10px;
@@ -27,7 +27,7 @@
 .label-container{
   display: flex;
   justify-content: left;
-  max-width: 50em;
+  max-width: 100em;
   border: 2px solid;
   border-bottom: white;
   padding : 10px;
