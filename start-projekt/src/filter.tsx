@@ -73,10 +73,19 @@ export const handleFilterButtonClick = (
     const newFilteredRows = filterRowsTable2(rows, filterMode);
     return newFilteredRows;
   }
-  columnSel.value = "";
-  valueSel.value = "";
+  columnSel.selectedIndex = 0;
+  valueSel.selectedIndex = 0;
+  removeOptions(valueSel);
   return rows;
 };
+
+function removeOptions(selectElement: any) {
+  var i,
+    L = selectElement.options.length - 1;
+  for (i = L; i > 0; i--) {
+    selectElement.remove(i);
+  }
+}
 
 export function filterDropDown(rows: any) {
   const columnSel = document.getElementById(

@@ -93,8 +93,8 @@ export function Contextual_data_table() {
 
         // Codeblock to set the dropdown menu andfilter
         const columnObject = getDropDownColumns(columns_config);
-        const subCategories = getDropDownItems(columnObject, transformedRows);
-        initializeDropDown(columnObject, subCategories);
+        getDropDownItems(columnObject, transformedRows);
+        initializeDropDown(columnObject);
 
         setRows(transformedRows);
         setFilteredRows(transformedRows);
@@ -114,7 +114,7 @@ export function Contextual_data_table() {
       </div>
       <div className="menu-flex">
         <div className="table-flex">
-          <label className="flex-item">table:</label>
+          <label className="flex-item">Push the button to switch tables:</label>
           <Form method="post" className="flex-item">
             <button
               type="submit"
@@ -126,8 +126,11 @@ export function Contextual_data_table() {
             </button>
           </Form>
         </div>
-        <div className="filter-flex">
-          <label className="flex-item">filteroptions</label>
+
+        <div className="presetfilter-flex">
+          <label className="flex-item">
+            Preset filter options with two columns:
+          </label>
           <div className="button-flex">
             <Form method="post" className="flex-item">
               <button
@@ -149,35 +152,41 @@ export function Contextual_data_table() {
                 social and primary/secondary
               </button>
             </Form>
-            <Form className="flex-item">
-              <div>
-                <select
-                  name="filter"
-                  id="column_selection"
-                  onChange={() => setFilteredRows(filterDropDown(rows))}
-                >
-                  <option value="">Select column</option>
-                </select>
-                <select
-                  name="filter"
-                  id="value_selection"
-                  onChange={() => setFilteredRows(filterDropDown(rows))}
-                >
-                  <option value="">Select value</option>
-                </select>
-              </div>
-            </Form>
-            <Form method="post" className="flex-item">
-              <button
-                type="button"
-                onClick={() =>
-                  setFilteredRows(handleFilterButtonClick(0, 0, rows))
-                }
-              >
-                delete filter
-              </button>
-            </Form>
           </div>
+        </div>
+        <div className="selectfilter-flex">
+          <label className="flex-item">Select own filter:</label>
+          <Form className="flex-item">
+            <div>
+              <select
+                name="filter"
+                id="column_selection"
+                onChange={() => setFilteredRows(filterDropDown(rows))}
+              >
+                <option value="">Select column</option>
+              </select>
+              <select
+                name="filter"
+                id="value_selection"
+                onChange={() => setFilteredRows(filterDropDown(rows))}
+              >
+                <option value="">Select value</option>
+              </select>
+            </div>
+          </Form>
+        </div>
+        <div className="delete-flex">
+          <label className="flex-item">Delete all filters:</label>
+          <Form method="post">
+            <button
+              type="button"
+              onClick={() =>
+                setFilteredRows(handleFilterButtonClick(0, 0, rows))
+              }
+            >
+              delete filter
+            </button>
+          </Form>
         </div>
       </div>
 

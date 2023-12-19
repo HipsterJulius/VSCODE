@@ -10,15 +10,6 @@
   margin-top: 1em;
 }
 
-
-#value_selection{
-  width: 20em;
-}
-
-#column_selection{
-  width: 10em;
-}
-
 /*
  * Style des Filterkastens
  *
@@ -28,6 +19,8 @@
   flex-direction: row;
   padding: 5px;
   width: auto;
+  flex-wrap: wrap;
+
 }
 
 .table-flex{
@@ -36,25 +29,67 @@
   border: 1px black solid;
   padding: 5px;
   padding-right: 10px;
+  flex-wrap: wrap;
 
 }
 
 .filter-flex{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-right: 1px black solid;
   border-bottom: 1px black solid;
   border-top: 1px black solid;
+  padding: 5px;
+  padding-right: 10px;
+  flex-wrap: wrap;
+
+}
+
+.presetfilter-flex{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 5px;
+  padding-right: 10px;
+  flex-wrap: wrap;
+
+}
+
+.selectfilter-flex{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  flex-wrap: wrap;
   padding: 5px;
   padding-right: 10px;
 }
 
 .button-flex{
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .flex-item{
   padding-left: 10px;
   padding-bottom: 5px;
+}
+
+.delete-flex{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 5px;
+  padding-right: 10px;
+}
+
+/*
+ * Style des Drop-Down-Menu
+*/
+#value_selection{
+  width: 20em;
+}
+
+#column_selection{
+  width: 10em;
 }

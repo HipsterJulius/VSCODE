@@ -40,11 +40,10 @@ export function getDropDownItems(data: any, rows: any) {
     }
     data[mainCategorie].splice(0, 2);
   }
-
   return data;
 }
 
-export function initializeDropDown(columnObject: any, subCategories: any) {
+export function initializeDropDown(columnObject: any) {
   // Get the both drop down menus
   var columnSel = document.getElementById(
     "column_selection"
@@ -58,7 +57,7 @@ export function initializeDropDown(columnObject: any, subCategories: any) {
   }
   columnSel.onchange = function () {
     valueSel.length = 1;
-    var z = subCategories[columnSel.value];
+    var z = columnObject[columnSel.value];
     if (z != undefined) {
       for (var i = 0; i < z.length; i++) {
         valueSel.options[valueSel.options.length] = new Option(z[i], z[i]);
