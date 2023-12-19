@@ -177,7 +177,7 @@ export function Contextual_data_table() {
         </div>
         <div className="delete-flex">
           <label className="flex-item">Delete all filters:</label>
-          <Form method="post">
+          <Form method="post" className="flex-item">
             <button
               type="button"
               onClick={() =>

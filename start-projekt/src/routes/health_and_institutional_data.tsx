@@ -178,7 +178,7 @@ export function Health_and_institutional_data_table() {
 
         <div className="delete-flex">
           <label className="flex-item">Delete all filters:</label>
-          <Form method="post">
+          <Form method="post" className="flex-item">
             <button
               type="button"
               onClick={() =>
