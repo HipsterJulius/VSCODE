@@ -4,7 +4,12 @@ import { csvToJson } from "../loader";
 import { Form, redirect } from "react-router-dom";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { columns_config, getFilteredRows } from "../table-config";
-import { handleFilterButtonClick } from "../filter";
+import { filterDropDown, handleFilterButtonClick } from "../filter";
+import {
+  getDropDownColumns,
+  getDropDownItems,
+  initializeDropDown,
+} from "../drop-down";
 
 export async function loader() {
   try {
@@ -85,6 +90,12 @@ export function Health_and_institutional_data_table() {
       try {
         const data = await loader();
         const transformedRows = transformData(data);
+
+        // Codeblock to set the dropdown menu andfilter
+        const columnObject = getDropDownColumns(columns_config);
+        const subCategories = getDropDownItems(columnObject, transformedRows);
+        initializeDropDown(columnObject, subCategories);
+
         setRows(transformedRows);
         setFilteredRows(transformedRows);
       } catch (error) {
@@ -101,49 +112,73 @@ export function Health_and_institutional_data_table() {
       <div className="header">
         <h1>Data inventory of organisations : health and institutional data</h1>
       </div>
-      <div className="label-container">
-        <label htmlFor="">table:</label>
-        <label htmlFor="" className="label-item">
-          filteroptions:
-        </label>
-      </div>
-      <div className="flex-container">
-        <Form method="post">
-          <button
-            type="submit"
-            className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(0, 0, rows))}
-          >
-            contextual data
-          </button>
-        </Form>
-        <Form method="post">
-          <button
-            type="button"
-            className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(2, 1, rows))}
-          >
-            study location und source
-          </button>
-        </Form>
-        <Form method="post">
-          <button
-            type="button"
-            className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(2, 2, rows))}
-          >
-            health and studylocation
-          </button>
-        </Form>
-        <Form method="post">
-          <button
-            type="button"
-            className="flex-item"
-            onClick={() => setFilteredRows(handleFilterButtonClick(0, 0, rows))}
-          >
-            delete filter
-          </button>
-        </Form>
+      <div className="menu-flex">
+        <div className="table-flex">
+          <label className="flex-item">table:</label>
+          <Form method="post" className="flex-item">
+            <button
+              type="submit"
+              onClick={() =>
+                setFilteredRows(handleFilterButtonClick(0, 0, rows))
+              }
+            >
+              contextual data
+            </button>
+          </Form>
+        </div>
+        <div className="filter-flex">
+          <label className="flex-item">filteroptions:</label>
+          <div className="button-flex">
+            <Form method="post" className="flex-item">
+              <button
+                type="button"
+                onClick={() =>
+                  setFilteredRows(handleFilterButtonClick(2, 1, rows))
+                }
+              >
+                study location und source
+              </button>
+            </Form>
+            <Form method="post" className="flex-item">
+              <button
+                type="button"
+                onClick={() =>
+                  setFilteredRows(handleFilterButtonClick(2, 2, rows))
+                }
+              >
+                health and studylocation
+              </button>
+            </Form>
+            <Form className="flex-item">
+              <div>
+                <select
+                  name="filter"
+                  id="column_selection"
+                  onChange={() => setFilteredRows(filterDropDown(rows))}
+                >
+                  <option value="">Select column</option>
+                </select>
+                <select
+                  name="filter"
+                  id="value_selection"
+                  onChange={() => setFilteredRows(filterDropDown(rows))}
+                >
+                  <option value="">Select value</option>
+                </select>
+              </div>
+            </Form>
+            <Form method="post" className="flex-item">
+              <button
+                type="button"
+                onClick={() =>
+                  setFilteredRows(handleFilterButtonClick(0, 0, rows))
+                }
+              >
+                delete filter
+              </button>
+            </Form>
+          </div>
+        </div>
       </div>
       {rows.length > 0 && (
         <div>

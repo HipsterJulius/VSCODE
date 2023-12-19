@@ -25,7 +25,9 @@ export function getDropDownItems(data: any, rows: any) {
         ) {
           if (row[mainCategoriesRow]) {
             if (Array.isArray(data[mainCategorie])) {
-              data[mainCategorie].push(row[mainCategoriesRow]);
+              if (!data[mainCategorie].includes(row[mainCategoriesRow])) {
+                data[mainCategorie].push(row[mainCategoriesRow]);
+              }
             } else {
               data[mainCategorie] = [
                 data[mainCategorie],
@@ -38,6 +40,7 @@ export function getDropDownItems(data: any, rows: any) {
     }
     data[mainCategorie].splice(0, 2);
   }
+
   return data;
 }
 
@@ -56,8 +59,10 @@ export function initializeDropDown(columnObject: any, subCategories: any) {
   columnSel.onchange = function () {
     valueSel.length = 1;
     var z = subCategories[columnSel.value];
-    for (var i = 0; i < z.length; i++) {
-      valueSel.options[valueSel.options.length] = new Option(z[i], z[i]);
+    if (z != undefined) {
+      for (var i = 0; i < z.length; i++) {
+        valueSel.options[valueSel.options.length] = new Option(z[i], z[i]);
+      }
     }
   };
 }

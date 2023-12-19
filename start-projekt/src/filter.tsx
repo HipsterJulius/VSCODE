@@ -85,6 +85,11 @@ export function filterDropDown(rows: any) {
   const valueSel = document.getElementById(
     "value_selection"
   ) as HTMLSelectElement;
+
+  if (valueSel.value == "" || columnSel.value == "") {
+    return rows;
+  }
+
   if (columnSel.value == "ID") {
     return rows.filter((item: any) => item.id === valueSel.value);
   } else if (columnSel.value == "Study Location") {

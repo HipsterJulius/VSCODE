@@ -7,34 +7,54 @@
 */
 .MuiDataGrid-root{
   margin-left: auto;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 
-.flex-container {
+
+#value_selection{
+  width: 20em;
+}
+
+#column_selection{
+  width: 10em;
+}
+
+/*
+ * Style des Filterkastens
+ *
+*/
+.menu-flex{
   display: flex;
-  flex-flow: wrap;
-  max-width: 100em;
-  border: 2px solid;
-  border-top: white;
-  padding: 10px;
-  justify-content: space-around;
+  flex-direction: row;
+  padding: 5px;
+  width: auto;
 }
 
-.flex-item {
-  width: 190px;
-}
-
-.label-container{
+.table-flex{
   display: flex;
-  justify-content: left;
-  max-width: 100em;
-  border: 2px solid;
-  border-bottom: white;
-  padding : 10px;
-  padding-bottom: 0px;
+  flex-direction: column;
+  border: 1px black solid;
+  padding: 5px;
+  padding-right: 10px;
+
 }
 
-.label-item{
-  padding-left: 170px;
+.filter-flex{
+  display: flex;
+  flex-direction: column;
+  border-right: 1px black solid;
+  border-bottom: 1px black solid;
+  border-top: 1px black solid;
+  padding: 5px;
+  padding-right: 10px;
 }
 
+.button-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item{
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
