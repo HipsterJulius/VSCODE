@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./error-page";
 import {
@@ -12,17 +12,24 @@ import {
   Contextual_data_table,
   action as CdAction,
 } from "./routes/contextual_data";
+import { Index, action as indexAction } from "./routes/index";
 
 const rootElement: any = document.getElementById("root");
 
 // Eine Seite laden, auf der die Tabelle zu sehen ist
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
-    element: <Health_and_institutional_data_table />,
+    element: <Index />,
+    action: indexAction,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "health_and_institutional_data",
+    element: <Health_and_institutional_data_table />,
     loader: DataLoader,
     action: HaIdAction,
+    errorElement: <ErrorPage />,
   },
   {
     path: "contextual_data",

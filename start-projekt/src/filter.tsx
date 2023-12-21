@@ -4,6 +4,10 @@
  * Each has two diffrent filterModi
  */
 
+interface CategoryMapping {
+  [mainCategory: string]: string;
+}
+
 // Die Reihen nach dem Filter filtern
 function filterRowsTable1(rows: any[][], number: number): any[][] {
   if (number == 0) {
@@ -88,6 +92,28 @@ function removeOptions(selectElement: any) {
 }
 
 export function filterDropDown(rows: any) {
+  const categoryMapping: CategoryMapping = {
+    ID: "id",
+    Name: "name",
+    Source: "source",
+    "Study Location": "study_location",
+    Geographical: "geographical",
+    "Study Period": "study_period",
+    "Time Unit": "time_unit",
+    "Number of cases": "number_of_cases",
+    Variables: "variables",
+    "Qualitative/Quantitative": "qualitative_quantitative",
+    "Secondary or primary data": "secondary_primary_data",
+    "Aggregated/Individual Data": "aggregated_individual_data",
+    Access: "access",
+    Cost: "cost",
+    URL: "url",
+    "Contact detail": "contact_detail",
+    "Data Quality/ Limitations": "data_quality_limitations",
+    Comments: "comments",
+    Contributor: "contributor",
+    Topic: "topic",
+  };
   const columnSel = document.getElementById(
     "column_selection"
   ) as HTMLSelectElement;
@@ -99,9 +125,10 @@ export function filterDropDown(rows: any) {
     return rows;
   }
 
-  if (columnSel.value == "ID") {
-    return rows.filter((item: any) => item.id === valueSel.value);
-  } else if (columnSel.value == "Study Location") {
-    return rows.filter((item: any) => item.study_location === valueSel.value);
+  for (var x in categoryMapping) {
+    if (x == columnSel.value) {
+      const subCategory = categoryMapping[x];
+      return rows.filter((item: any) => item[subCategory] === valueSel.value);
+    }
   }
 }

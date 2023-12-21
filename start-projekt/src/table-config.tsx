@@ -110,7 +110,11 @@ export function getFilteredRows(
   filteredRows: any[],
   rows: any[]
 ): GridRowProps[] {
-  if (filteredRows.length == rows.length) {
-    return filteredRows.slice(1, rows.length - 1);
-  } else return filteredRows;
+  if (filteredRows.length) {
+    if (filteredRows.length == rows.length) {
+      return filteredRows.slice(1, rows.length - 1);
+    } else return filteredRows;
+  } else {
+    return [];
+  }
 }

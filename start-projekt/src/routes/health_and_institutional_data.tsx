@@ -26,7 +26,7 @@ export async function loader() {
 }
 
 export async function action() {
-  return redirect(`contextual_data`);
+  return redirect(`/contextual_data`);
 }
 
 export function Health_and_institutional_data_table() {
@@ -110,7 +110,7 @@ export function Health_and_institutional_data_table() {
   return (
     <>
       <div className="header">
-        <h1>Data inventory of organisations : health and institutional data</h1>
+        <h1>health and institutional data</h1>
       </div>
       <div className="menu-flex">
         <div className="table-flex">
@@ -155,7 +155,9 @@ export function Health_and_institutional_data_table() {
           </div>
         </div>
         <div className="selectfilter-flex">
-          <label className="flex-item">Select own filter:</label>
+          <label className="flex-item">
+            Select own filter (ID and study location are working):
+          </label>
           <Form className="flex-item">
             <div>
               <select
