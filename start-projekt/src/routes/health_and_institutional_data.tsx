@@ -155,9 +155,7 @@ export function Health_and_institutional_data_table() {
           </div>
         </div>
         <div className="selectfilter-flex">
-          <label className="flex-item">
-            Select own filter (ID and study location are working):
-          </label>
+          <label className="flex-item">Select own filter:</label>
           <Form className="flex-item">
             <div>
               <select
