@@ -1,79 +1,55 @@
-interface CategoryMapping {
-  [mainCategory: string]: string;
-}
+import { categoryMapping } from "./table-config";
 
-// Method to create the drop down menus
+// Method to extract the dropdown-informations from the data object
 export function getDropDownColumns(columns_config: any) {
-  const transformedData: any = {};
+  const dropDownColumns: any = {};
   for (const item of columns_config) {
     const headerName = item.headerName;
-    if (!(headerName in transformedData)) {
-      transformedData[headerName] = {};
+    if (!(headerName in dropDownColumns)) {
+      dropDownColumns[headerName] = {};
     }
   }
-  return transformedData;
+  return dropDownColumns;
 }
 
+/*
+ * Method to extract the dropdown-elements from the data
+ * based on the main and subcategories
+ */
 export function getDropDownItems(data: any, rows: any) {
-  const mainCategories = [];
-  const mainCategoriesRows = [];
+  const mainCategories = Object.keys(data);
+  const mainCategoriesRows = Object.keys(rows[0]);
+  for (const mainCategory of mainCategories) {
+    const subCategory = categoryMapping[mainCategory];
 
-  for (var item in data) {
-    mainCategories.push(item);
-  }
-  for (var item in rows[0]) {
-    mainCategoriesRows.push(item);
-  }
+    if (subCategory && mainCategoriesRows.includes(subCategory)) {
+      for (const row of rows) {
+        const value = row[subCategory];
 
-  const categoryMapping: CategoryMapping = {
-    ID: "id",
-    Name: "name",
-    Source: "source",
-    "Study Location": "study_location",
-    Geographical: "geographical",
-    "Study Period": "study_period",
-    "Time Unit": "time_unit",
-    "Number of cases": "number_of_cases",
-    Variables: "variables",
-    "Qualitative/Quantitative": "qualitative_quantitative",
-    "Secondary or primary data": "secondary_primary_data",
-    "Aggregated/Individual Data": "aggregated_individual_data",
-    Access: "access",
-    Cost: "cost",
-    URL: "url",
-    "Contact detail": "contact_detail",
-    "Data Quality/ Limitations": "data_quality_limitations",
-    Comments: "comments",
-    Contributor: "contributor",
-    Topic: "topic",
-  };
-
-  for (const mainCategorie of mainCategories) {
-    for (const row of rows) {
-      for (const mainCategoriesRow of mainCategoriesRows) {
-        const subCategory = categoryMapping[mainCategorie];
-        if (subCategory && mainCategoriesRow === subCategory) {
-          if (row[mainCategoriesRow]) {
-            if (Array.isArray(data[mainCategorie])) {
-              if (!data[mainCategorie].includes(row[mainCategoriesRow])) {
-                data[mainCategorie].push(row[mainCategoriesRow]);
-              }
-            } else {
-              data[mainCategorie] = [
-                data[mainCategorie],
-                row[mainCategoriesRow],
-              ];
-            }
+        if (
+          value &&
+          (!Array.isArray(data[mainCategory]) ||
+            !data[mainCategory].includes(value))
+        ) {
+          if (Array.isArray(data[mainCategory])) {
+            data[mainCategory].push(value);
+          } else {
+            data[mainCategory] = [data[mainCategory], value];
           }
         }
       }
     }
-    data[mainCategorie].splice(0, 2);
+    data[mainCategory] =
+      Array.isArray(data[mainCategory]) &&
+      data[mainCategory].length === rows.length
+        ? data[mainCategory].slice(2)
+        : data[mainCategory];
   }
-  console.log(data);
+
   return data;
 }
 
+// Method to initialize both dropdown menus
 export function initializeDropDown(columnObject: any) {
   // Get the both drop down menus
   var columnSel = document.getElementById(
@@ -83,12 +59,14 @@ export function initializeDropDown(columnObject: any) {
     "value_selection"
   ) as HTMLSelectElement;
 
-  // change the dropdown values for the first and second field
+  // create the dropdown values for the first selection
   for (var x in columnObject) {
     if (x != undefined) {
       columnSel.options[columnSel.options.length] = new Option(x, x);
     }
   }
+  // if the first selection changes,
+  //the values for the second selection change and need to be created
   columnSel.onchange = function () {
     valueSel.length = 1;
     var z = columnObject[columnSel.value];

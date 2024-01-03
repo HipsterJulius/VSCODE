@@ -1,5 +1,10 @@
 import { GridColDef, GridRowProps } from "@mui/x-data-grid";
 
+//Interface to map the category from a column to the variable name
+export interface CategoryMapping {
+  [mainCategory: string]: string;
+}
+
 /*
  * Liste aller columns
  *
@@ -106,6 +111,31 @@ export const columns_config: GridColDef[] = [
   { field: "topic", headerName: "Topic", sortable: false, width: 150 },
 ];
 
+//All categorys mapping with the "variable" names
+export const categoryMapping: CategoryMapping = {
+  ID: "id",
+  Name: "name",
+  Source: "source",
+  "Study Location": "study_location",
+  Geographical: "geographical",
+  "Study Period": "study_period",
+  "Time Unit": "time_unit",
+  "Number of cases": "number_of_cases",
+  Variables: "variables",
+  "Qualitative/Quantitative": "qualitative_quantitative",
+  "Secondary or primary data": "secondary_primary_data",
+  "Aggregated/Individual Data": "aggregated_individual_data",
+  Access: "access",
+  Cost: "cost",
+  URL: "url",
+  "Contact detail": "contact_detail",
+  "Data Quality/ Limitations": "data_quality_limitations",
+  Comments: "comments",
+  Contributor: "contributor",
+  Topic: "topic",
+};
+
+// Method to create a GridRowProps[] object with the filtered rows
 export function getFilteredRows(
   filteredRows: any[],
   rows: any[]

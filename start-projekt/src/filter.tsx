@@ -1,11 +1,47 @@
+import { categoryMapping } from "./table-config";
+
 /*
  * File to sum up the filter methods
  * Two diffrent filterMethods
  * Each has two diffrent filterModi
  */
 
-interface CategoryMapping {
-  [mainCategory: string]: string;
+/* Helpermethod to call the filterMethod with diffrent modi
+ * filterMethod:    which filter method should be called
+ * filterMode:      which filter should be called
+ */
+export const handleFilterButtonClick = (
+  filterMethod: number,
+  filterMode: number,
+  rows: any
+): any => {
+  const columnSel = document.getElementById(
+    "column_selection"
+  ) as HTMLSelectElement;
+  const valueSel = document.getElementById(
+    "value_selection"
+  ) as HTMLSelectElement;
+
+  if (filterMethod == 1) {
+    const newFilteredRows = filterRowsTable1(rows, filterMode);
+    return newFilteredRows;
+  } else if (filterMethod == 2) {
+    const newFilteredRows = filterRowsTable2(rows, filterMode);
+    return newFilteredRows;
+  }
+  columnSel.selectedIndex = 0;
+  valueSel.selectedIndex = 0;
+  removeOptions(valueSel);
+  return rows;
+};
+
+// Helpermethod to remove the selected elements from the html-object
+function removeOptions(selectElement: any) {
+  var i,
+    L = selectElement.options.length - 1;
+  for (i = L; i > 0; i--) {
+    selectElement.remove(i);
+  }
 }
 
 // Die Reihen nach dem Filter filtern
@@ -56,64 +92,10 @@ function filterRowsTable2(rows: any[][], number: number): any[][] {
     });
 }
 
-// Helpermethod to call the filterMethod with diffrent modi
-// filterMethod:    which filter method should be called
-// filterMode:      which filter should be called
-export const handleFilterButtonClick = (
-  filterMethod: number,
-  filterMode: number,
-  rows: any
-): any => {
-  const columnSel = document.getElementById(
-    "column_selection"
-  ) as HTMLSelectElement;
-  const valueSel = document.getElementById(
-    "value_selection"
-  ) as HTMLSelectElement;
-  if (filterMethod == 1) {
-    const newFilteredRows = filterRowsTable1(rows, filterMode);
-    return newFilteredRows;
-  } else if (filterMethod == 2) {
-    const newFilteredRows = filterRowsTable2(rows, filterMode);
-    return newFilteredRows;
-  }
-  columnSel.selectedIndex = 0;
-  valueSel.selectedIndex = 0;
-  removeOptions(valueSel);
-  return rows;
-};
-
-function removeOptions(selectElement: any) {
-  var i,
-    L = selectElement.options.length - 1;
-  for (i = L; i > 0; i--) {
-    selectElement.remove(i);
-  }
-}
-
+/*
+ * Function to filter the rows with the values from the selection
+ */
 export function filterDropDown(rows: any) {
-  const categoryMapping: CategoryMapping = {
-    ID: "id",
-    Name: "name",
-    Source: "source",
-    "Study Location": "study_location",
-    Geographical: "geographical",
-    "Study Period": "study_period",
-    "Time Unit": "time_unit",
-    "Number of cases": "number_of_cases",
-    Variables: "variables",
-    "Qualitative/Quantitative": "qualitative_quantitative",
-    "Secondary or primary data": "secondary_primary_data",
-    "Aggregated/Individual Data": "aggregated_individual_data",
-    Access: "access",
-    Cost: "cost",
-    URL: "url",
-    "Contact detail": "contact_detail",
-    "Data Quality/ Limitations": "data_quality_limitations",
-    Comments: "comments",
-    Contributor: "contributor",
-    Topic: "topic",
-  };
   const columnSel = document.getElementById(
     "column_selection"
   ) as HTMLSelectElement;

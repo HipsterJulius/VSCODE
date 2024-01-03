@@ -16,7 +16,7 @@ import { Index, action as indexAction } from "./routes/index";
 
 const rootElement: any = document.getElementById("root");
 
-// Eine Seite laden, auf der die Tabelle zu sehen ist
+// Eine Seite laden, die Auswahl zu den Tabellen besteht
 const router = createHashRouter([
   {
     path: "/",
