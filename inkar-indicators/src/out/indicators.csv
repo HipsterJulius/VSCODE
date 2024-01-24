@@ -1,5 +1,5 @@
-,category,name,source,source_id
-0,Absolutzahlen,Bevölkerung (mit Korrektur VZ 1987/Zensus 2011),Inkar,10806.0
-1,Bevölkerung,Abhängigenquote Alte,Inkar,16987.0
-2,Privateinkommen und private Schulden,Bruttoverdienst im Produzierenden Gewerbe,Inkar,17479.0
-3,Öffentliche Finanzen,Personal der Kommunen,Inkar,14928.0
+category,name,source,source_id
+Absolutzahlen,Bevölkerung (mit Korrektur VZ 1987/Zensus 2011),Inkar,10806
+Bevölkerung,Abhängigenquote Alte,Inkar,16987
+Privateinkommen und private Schulden,Bruttoverdienst im Produzierenden Gewerbe,Inkar,17479
+Öffentliche Finanzen,Personal der Kommunen,Inkar,14928
