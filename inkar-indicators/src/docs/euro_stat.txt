@@ -8,3 +8,7 @@ Die Definition findet man in den jeweiligen Metadaten des Datensatzes
 Große eindeutige Daten lassen sich gut vergleichen (bsp. Bevölkerung), 
 aber Indikatoren mit kleineren Definitionen lassen sich schwer vergleichen,
 da die Definitionen leichter voneinander abweichen können.
+
+Im Inkar Datensatz finden sich auch Daten auf der NUTS2 Ebene. 
+Die genauen Indikatoren findet man in der Übersicht.csv oder auf der Website!
+
