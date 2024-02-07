@@ -1,5 +1,5 @@
 ,select,category,category_de,category_nl,name,name_de,name_nl,source_de,source_id_de,source_nl,source_id_nl,Zeitbezug_min,Zeitbezug_max,Gemeinden,Gemeindeverbände,Kreise
-0,,Absolute numbers,Absolutzahlen,,Unemployed,Arbeitslose,,Inkar,2176,,,1995,2020,,X,X
+0,x,Absolute numbers,Absolutzahlen,,Unemployed,Arbeitslose,,Inkar,2176,,,1995,2020,,X,X
 1,x,Absolute numbers,Absolutzahlen,,Population (with correction VZ 1987/Zensus 2011),Bevölkerung (mit Korrektur VZ 1987/Zensus 2011),,Inkar,10806,,,1995,2020,,X,X
 2,,Absolute numbers,Absolutzahlen,,Total population,Bevölkerung gesamt,,Inkar,12586,,,1995,2020,,X,X
 3,,Absolute numbers,Absolutzahlen,,Population Male,Bevölkerung männlich,,Inkar,12747,,,1995,2020,,X,X
@@ -66,7 +66,7 @@
 64,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of employment Financial and business services,Anteil Erwerbstätige Finanz- und Unternehmensdienstleistungen,,Inkar,17064,,,2000,2020,,,X
 65,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of total employment Manufacturing in industry,Anteil Erwerbstätige Verarbeitendes Gewerbe an Industrie,,Inkar,17063,,,2000,2020,,,X
 66,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (women),Anteil Minijobs (Frauen),,Inkar,17033,,,2003,2020,,X,X
-67,x,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (men),Anteil Minijobs (Männer),,Inkar,17034,,,2003,2020,,X,X
+67,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (men),Anteil Minijobs (Männer),,Inkar,17034,,,2003,2020,,X,X
 68,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (supplementary earnings),Anteil Minijobs (Nebenverdienst),,Inkar,17029,,,2003,2020,,X,X
 69,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (supplementary earnings) in employment,Anteil Minijobs (Nebenverdienst) an den Beschäftigungsverhältnissen,,Inkar,16728,,,2003,2020,,X,X
 70,,Employment and employment,Beschäftigung und Erwerbstätigkeit,,Share of mini-jobs (exclusively) in employment,Anteil Minijobs (ausschließlich) an den Beschäftigungsverhältnissen,,Inkar,15007,,,2003,2020,,X,X
@@ -154,7 +154,7 @@
 152,,Population,Bevölkerung,,Growth rate,Fortzugsrate,,Inkar,17127,,,1995,2020,,,X
 153,,Population,Bevölkerung,,Growth rate for women,Fortzugsrate Frauen,,Inkar,17129,,,2003,2020,,,X
 154,,Population,Bevölkerung,,Growth rate for men,Fortzugsrate Männer,,Inkar,17131,,,2003,2020,,,X
-155,x,Population,Bevölkerung,,Proportion of women,Frauenanteil,,Inkar,14006,,,1995,2020,,X,X
+155,,Population,Bevölkerung,,Proportion of women,Frauenanteil,,Inkar,14006,,,1995,2020,,X,X
 156,,Population,Bevölkerung,,Proportion of women 20 to less than 40 years,Frauenanteil 20 bis unter 40 Jahre,,Inkar,16989,,,1995,2020,,X,X
 157,,Population,Bevölkerung,,Births,Geborene,,Inkar,17334,,,1995,2020,,X,X
 158,,Population,Bevölkerung,,Births of young mothers (<20 years),Geburten junger Mütter (<20 Jahre),,Inkar,17347,,,1995,2020,,,X
@@ -425,7 +425,7 @@
 423,,Economy,Wirtschaft,,Medium-sized enterprises,Mittlere Unternehmen,,Inkar,15512,,,2006,2020,,,X
 424,,Economy,Wirtschaft,,Sleeping facilities in accommodation establishments,Schlafgelegenheiten in Beherbergungsbetrieben,,Inkar,16548,,,2008,2020,,X,X
 425,,Economy,Wirtschaft,,Turnover Capital goods,Umsatz Bauhauptgewerbe,,Inkar,17088,,,1995,2019,,,X
-426,x,Economy,Wirtschaft,,Turnover in mining and manufacturing,Umsatz im Bergbau u. Verarb. Gewerbe,,Inkar,17170,,,2009,2020,,,X
+426,,Economy,Wirtschaft,,Turnover in mining and manufacturing,Umsatz im Bergbau u. Verarb. Gewerbe,,Inkar,17170,,,2009,2020,,,X
 427,,Economy,Wirtschaft,,Turnover in crafts,Umsatz im Handwerk,,Inkar,17055,,,2010,2018,,,X
 428,,Economy,Wirtschaft,,Business insolvencies,Unternehmensinsolvenzen,,Inkar,17255,,,2007,2020,,,X
 429,,Economy,Wirtschaft,,Corporate defaults Creditor claims,Unternehmensinsolvenzen Gläubigerforderungen,,Inkar,17993,,,2007,2020,,,X
@@ -443,7 +443,7 @@
 441,,Central locations Monitoring,Zentrale Orte Monitoring,,Railway stop(s),Bahnhaltestellen,,Inkar,154020,,,2018,2020,X,,
 442,,Central locations Monitoring,Zentrale Orte Monitoring,,Vocational schools,Berufsbildende Schulen,,Inkar,156170,,,2017,2019,X,,
 443,,Central locations Monitoring,Zentrale Orte Monitoring,,Density of employees (AO),Beschäftigtendichte (AO),,Inkar,153030,,,2017,2020,X,,
-444,x,Central locations Monitoring,Zentrale Orte Monitoring,,Density of employees (WO),Beschäftigtendichte (WO),,Inkar,153040,,,2017,2020,X,,
+444,,Central locations Monitoring,Zentrale Orte Monitoring,,Density of employees (WO),Beschäftigtendichte (WO),,Inkar,153040,,,2017,2020,X,,
 445,,Central locations Monitoring,Zentrale Orte Monitoring,,Population,Bevölkerung,,Inkar,151070,,,2017,2020,X,,
 446,,Central locations Monitoring,Zentrale Orte Monitoring,,Population trends,Bevölkerungsentwicklung,,Inkar,151100,,,2017,2020,X,,
 447,,Central locations Monitoring,Zentrale Orte Monitoring,,Libraries,Bibliotheken,,Inkar,156200,,,2017,2017,X,,
@@ -541,6 +541,6 @@
 539,,Public finances,Öffentliche Finanzen,,Local debt,Kommunale Schulden,,Inkar,14612,,,2010,2020,,,X
 540,,Public finances,Öffentliche Finanzen,,Local government staff,Personal der Kommunen,,Inkar,14928,,,2006,2019,,,X
 541,,Public finances,Öffentliche Finanzen,,Key allocations,Schlüsselzuweisungen,,Inkar,14926,,,1995,2020,,X,X
-542,x,Public finances,Öffentliche Finanzen,,Tax payable by:,Steuerkraft,,Inkar,14586,,,1995,2019,,X,X
+542,,Public finances,Öffentliche Finanzen,,Tax payable by:,Steuerkraft,,Inkar,14586,,,1995,2019,,X,X
 543,,Public finances,Öffentliche Finanzen,,Value added tax,Umsatzsteuer,,Inkar,14906,,,1995,2020,,X,X
 544,,Public finances,Öffentliche Finanzen,,Allocations for investment support measures,Zuweisungen für Investitionsfördermaßnahmen,,Inkar,14930,,,2009,2020,,X,X

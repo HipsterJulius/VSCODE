@@ -1,0 +1,10 @@
+Daten von eurostats sind einfach zu betrachten über den Databrowser, 
+dort findet man auch Informationen zu den Indikatoren 
+(https://ec.europa.eu/eurostat/databrowser/explore/all/all_themes?lang=de&display=list&sort=category)
+
+Vorsicht bei de rNutzung der Daten, immer die genaue Definition mit anderen Datensätzen vergleichen!
+Die Definition findet man in den jeweiligen Metadaten des Datensatzes
+
+Große eindeutige Daten lassen sich gut vergleichen (bsp. Bevölkerung), 
+aber Indikatoren mit kleineren Definitionen lassen sich schwer vergleichen,
+da die Definitionen leichter voneinander abweichen können.
