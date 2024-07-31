@@ -1,6 +1,6 @@
-﻿category_de;name_de;source_de;source_id_de;category_nl;name_nl;source_nl;source_id_nl;source_id_value_nl;source_URL_nl_regional; 
-Bevölkerung;Geborene;Inkar;17334;"Geboorte; kerncijfers vruchtbaarheid, leeftijd moeder, regio";Gemiddeld kindertal per vrouw;CBS Open data Statline;37201;LevendGeborenKinderenRelatief_2;
-Bevölkerung;Gestorbene;Inkar;17335;"Overledenen; geslacht, leeftijd, burgerlijke staat, regio";;CBS Open data Statline;"""03747""";MannenEnVrouwen_4;
-Bevölkerung;Haushalte mit Kindern;Inkar;17800;"Huishoudens; kindertal, leeftijdklasse kind, regio, 1 januari";Totaal huishoudens met kinderen;CBS Open data Statline;71487ned;TotaalHuishoudensMetKinderen_1;
-Absolutzahlen;Arbeitslose;Inkar;2176;Arbeidsdeelname;"Arbeidsdeelname; regionale indeling 2023";CBS Open data Statline;85826NED;WerklozeBeroepsbevolking_12;
-Arbeitslosigkeit;Arbeitslosenquote;Inkar;14574;;;;;;;;
+﻿category_de,name_de,source_de,source_id_de,
+Bevölkerung,Geborene,Inkar,17334,
+Bevölkerung,Gestorbene,Inkar,17335,
+Bevölkerung,Haushalte mit Kindern,Inkar,17800,
+Absolutzahlen,Arbeitslose,Inkar,2176,
+Arbeitslosigkeit,Arbeitslosenquote,Inkar,14574,
