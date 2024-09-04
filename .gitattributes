@@ -1,0 +1,4 @@
+inkar-indicators/src/out/cbs_csv/indicator_Werknemer_4.csv filter=lfs diff=lfs merge=lfs -text
+inkar-indicators/data/inkar_2022.zip filter=lfs diff=lfs merge=lfs -text
+inkar-indicators/data/DE_VG250.gpkg filter=lfs diff=lfs merge=lfs -text
+inkar-indicators/src/out/ready_csvs/Werknemer_4.csv filter=lfs diff=lfs merge=lfs -text
