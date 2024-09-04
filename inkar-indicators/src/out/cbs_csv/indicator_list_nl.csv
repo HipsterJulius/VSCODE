@@ -1,18 +1,3 @@
-﻿category_nl;name_nl;source_nl;source_id_nl;Regional_Source_id_nl;
-Arbeidsdeelname;"Arbeidsdeelname; regionale indeling 2023";CBS Open data Statline;85826NED;Werkloosheidspercentage_13;
-Arbeidsdeelname;"Arbeidsdeelname; regionale indeling 2023";CBS Open data Statline;85826NED;NettoArbeidsparticipatie_16;
-Arbeidsdeelname;"Arbeidsdeelname; gemeenten";CBS Open data Statline;85796NED;Werknemer_4;
-Arbeidsdeelname;"Arbeidsdeelname; gemeenten";CBS Open data Statline;85796NED;Werknemer_4;
-Voortijdig schoolverlaters (VSV);"Vsv; geslacht, woonregio";CBS Open data Statline;84780NED;VoortijdigSchoolverlaters_2;
-Inkomen van huishoudens;"Inkomen huishoudens; kenmerken, regio";CBS Open data Statline;85711NED;GemiddeldBesteedbaarInkomen_5/MediaanBesteedbaarInkomen_6;
-"Geboorte; kerncijfers vruchtbaarheid, leeftijd moeder, regio";Gemiddeld kindertal per vrouw;CBS Open data Statline;37201;LevendGeborenKinderenRelatief_2;
-"Overledenen; geslacht, leeftijd, burgerlijke staat, regio";;CBS Open data Statline;03747;MannenEnVrouwen_4;
-"Geboorte; kerncijfers vruchtbaarheid, leeftijd moeder, regio";Levend geboren kinderen: leeftijd moeder: jonger dan 20 jaar;CBS Open data Statline;37201;JongerDan20Jaar_9;
-"Geboorte; kerncijfers vruchtbaarheid, leeftijd moeder, regio";Levend geboren kinderen: leeftijd moeder: jonger dan 40 jaar;CBS Open data Statline;37201;k_40Tot45Jaar_14 & k_45JaarOfOuder_15;
-"Huishoudens; kindertal, leeftijdklasse kind, regio, 1 januari";Totaal huishoudens met kinderen;CBS Open data Statline;71487ned;TotaalHuishoudensMetKinderen_1;
-"Leerlingen en studenten; onderwijssoort, woonregio";Hoger beroepsonderwijs & Wetenschappelijk onderwijs;CBS Open data Statline;85701NED;A025294 & A025297;
-"Leerlingen en studenten; onderwijssoort, woonregio";Hoger beroepsonderwijs;CBS Open data Statline;85701NED;A025294;
-"Bevolkingsontwikkeling; levende geborenen, overledenen en migratie per regio";Bevolking op 1 janruar;CBS Open data Statline;37259ned;BevolkingOp1Januari_1;
-"Bevolkingsontwikkeling; levende geborenen, overledenen en migratie per regio";Bevolkingsdichtheid;CBS Open data Statline;37259ned;Bevolkingsdichtheid_2;
-"Arbeidsdeelname; regionale indeling 2023";Werkzame beroepsbevolking;CBS Open data Statline;85826NED;WerkzameBeroepsbevolking_3;
-"Arbeidsdeelname; regionale indeling 2024";Beroepsbevolking;CBS Open data Statline;85826NED;Beroepsbevolking_2;
+version https://git-lfs.github.com/spec/v1
+oid sha256:0df9489c1300b1ac979f4c9908cd17ac29d18740b70b3e76135e589c95550712
+size 2395

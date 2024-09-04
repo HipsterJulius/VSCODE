@@ -1,5 +1,3 @@
-category,name,source,source_id
-Absolutzahlen,Bevölkerung (mit Korrektur VZ 1987/Zensus 2011),Inkar,10806
-Bevölkerung,Abhängigenquote Alte,Inkar,16987
-Privateinkommen und private Schulden,Bruttoverdienst im Produzierenden Gewerbe,Inkar,17479
-Öffentliche Finanzen,Personal der Kommunen,Inkar,14928
+version https://git-lfs.github.com/spec/v1
+oid sha256:d7df36e7d013c8ce6bba12798282b23ed274818a9850be6e86d2e8e66d4be87a
+size 305
