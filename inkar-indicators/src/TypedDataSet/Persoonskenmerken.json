@@ -1,0 +1,62 @@
+[
+  {
+    "Key": "T009002",
+    "Title": "Totaal personen",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "3000   ",
+    "Title": "Geslacht: mannen",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "4000   ",
+    "Title": "Geslacht: vrouwen",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "53050  ",
+    "Title": "Leeftijd: 15 tot 25 jaar",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "53310  ",
+    "Title": "Leeftijd: 25 tot 45 jaar",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "53825  ",
+    "Title": "Leeftijd: 45 tot 75 jaar",
+    "Description": "",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "2018700",
+    "Title": "Onderwijsniveau: laag onderwijs",
+    "Description": "Het hoogst behaalde onderwijsniveau is laag onderwijs. \r\nDit omvat onderwijs op het niveau van basisonderwijs, het vmbo, de eerste 3 leerjaren van havo/vwo of de assistentenopleiding (mbo-1).",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "2018740",
+    "Title": "Onderwijsniveau: middelbaar onderwijs",
+    "Description": "Het hoogst behaalde onderwijsniveau  is middelbaar onderwijs. \r\nDit omvat de bovenbouw van havo/vwo, de basisberoepsopleiding (mbo-2), de vakopleiding (mbo-3) en de middenkader- en specialistenopleidingen (mbo-4).",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "2018790",
+    "Title": "Onderwijsniveau: hoog onderwijs",
+    "Description": "Het hoogst behaalde onderwijsniveau is hoog onderwijs. \r\nDit omvat onderwijs op het niveau van hbo of wo.",
+    "CategoryGroupID": null
+  },
+  {
+    "Key": "2018820",
+    "Title": "Onderwijsniveau: onbekend",
+    "Description": "Het hoogst behaalde onderwijsniveau is onbekend.",
+    "CategoryGroupID": null
+  }
+]
